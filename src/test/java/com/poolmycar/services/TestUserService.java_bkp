@@ -1,0 +1,24 @@
+package com.poolmycar.services;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.poolmycar.BaseSpringJunit;
+import com.poolmycar.domain.User;
+
+public class TestUserService extends BaseSpringJunit {
+
+	@Autowired
+	UserService userService;
+	
+	@Test
+	public void testGetUser() throws Exception{
+		String email = "uttamkumarbiswas@gmail.com";
+		User user = new User();
+		user = userService.getUser(email);
+		System.out.println(user.toString());
+		//assertTrue(email.equals(user.getEmail()));
+	}
+}
