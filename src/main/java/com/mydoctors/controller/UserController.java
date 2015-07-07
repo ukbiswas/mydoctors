@@ -1,4 +1,4 @@
-package com.poolmycar.controller;
+package com.mydoctors.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

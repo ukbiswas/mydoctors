@@ -1,6 +1,6 @@
-package com.poolmycar.services;
+package com.mydoctors.services;
 
-import com.poolmycar.domain.User;
+import com.mydoctors.domain.User;
 
 public interface UserService {
 	public void saveUser(User user);

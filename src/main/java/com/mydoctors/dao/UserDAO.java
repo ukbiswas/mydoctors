@@ -1,6 +1,6 @@
-package com.poolmycar.dao;
+package com.mydoctors.dao;
 
-import com.poolmycar.domain.User;
+import com.mydoctors.domain.User;
 
 public interface UserDAO {
 	public User getUser(String email);

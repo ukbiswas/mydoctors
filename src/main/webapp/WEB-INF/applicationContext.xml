@@ -15,12 +15,19 @@
            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="com.poolmycar.services,com.poolmycar.dao"/>
+    <context:component-scan base-package="com.mydoctors.services,com.mydoctors.dao"/>
     <mvc:annotation-driven />
+    
+    <mongo:mongo host="localhost" port="27017" id="mongo" />
+	<mongo:db-factory dbname="test" mongo-ref="mongo" id="mongoDbFactory" />
+	 
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+	    <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+	</bean>
     
 	<!-- <jee:jndi-lookup id="dataSource1" jndi-name="jdbc/MYDS" expected-type="javax.sql.DataSource" /> -->
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/mysql" />
 		<property name="username" value="root" />
@@ -33,6 +40,6 @@
     
      <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg ref="dataSource" /> 
-	 </bean>
+	 </bean> -->
 	 
 </beans>
