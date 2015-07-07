@@ -6,12 +6,12 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.mydoctors.dao.UserDAO;
-import com.mydoctors.domain.User;
-//import org.springframework.data.mongodb.core.MongoOperations;
+import com.mydoctors.dao.DoctorDAO;
+import com.mydoctors.domain.Doctor;
 
-@Repository("userDAO")
-public class UserDAOImpl implements UserDAO {
+
+@Repository("doctorDAO")
+public class DoctorDAOImpl implements DoctorDAO {
 
 	@Autowired
 	//private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -19,19 +19,19 @@ public class UserDAOImpl implements UserDAO {
 	private MongoTemplate mongoTemplate;
 	
 	
-	public User getUser(String username) {
+	public Doctor getDoctor(String id) {
 		// TODO Auto-generated method stub
-		Query query = new Query(Criteria.where("username").is(username));
-		return mongoTemplate.findOne(query, User.class);
+		//Query query = new Query(Criteria.where("_id").is(id));
+		return mongoTemplate.findById(id, Doctor.class);
 	}
 
-	public void saveUser(User user) {
+	public void saveDoctor(Doctor doctor) {
 		// TODO Auto-generated method stub
 		//mongoOps.save(user);
-		mongoTemplate.insert(user);
+		mongoTemplate.insert(doctor);
 	}
 
-	public void updateUser(User user) {
+	public void updateDoctor(Doctor user) {
 		// TODO Auto-generated method stub
 
 	}

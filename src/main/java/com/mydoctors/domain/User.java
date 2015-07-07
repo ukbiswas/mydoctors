@@ -1,4 +1,4 @@
-package com.poolmycar.domain;
+package com.mydoctors.domain;
 
 
 /**

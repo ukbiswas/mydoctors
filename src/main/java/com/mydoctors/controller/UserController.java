@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.poolmycar.domain.User;
-import com.poolmycar.services.UserService;
+import com.mydoctors.domain.User;
+import com.mydoctors.services.UserService;
 
 
 @Controller
