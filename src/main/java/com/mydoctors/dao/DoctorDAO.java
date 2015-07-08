@@ -1,5 +1,6 @@
 package com.mydoctors.dao;
 
+
 import com.mydoctors.domain.Doctor;
 
 public interface DoctorDAO {

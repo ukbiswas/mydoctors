@@ -5,15 +5,15 @@ package com.mydoctors.domain;
  *
  */
 public class Address {
-	private String addressDetails;
+	private String location;
 	private long pin;
 	private String phone;
 	
-	public String getAddressDetails() {
-		return addressDetails;
+	public String getLocation() {
+		return location;
 	}
-	public void setAddressDetails(String addressDetails) {
-		this.addressDetails = addressDetails;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	public long getPin() {
 		return pin;

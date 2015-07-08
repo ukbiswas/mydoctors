@@ -1,45 +1,26 @@
 package com.mydoctors.domain;
 
-import java.util.Date;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 /**
  * @author ukb
  *
  */
 public class Timing {
-	private String fromDay;
-	private String toDay;
-	private String fromTime;
-	private String toTime;
+	private String[] days;
+	private String[] hours;
 	private Double visit;
 	private Address address;
+	public String[] getDays() {
+		return days;
+	}
+	public void setDays(String[] days) {
+		this.days = days;
+	}
 	
-	public String getFromDay() {
-		return fromDay;
+	public String[] getHours() {
+		return hours;
 	}
-	public void setFromDay(String fromDay) {
-		this.fromDay = fromDay;
-	}
-	public String getToDay() {
-		return toDay;
-	}
-	public void setToDay(String toDay) {
-		this.toDay = toDay;
-	}
-	public String getFromTime() {
-		return fromTime;
-	}
-	public void setFromTime(String fromTime) {
-		this.fromTime = fromTime;
-	}
-	public String getToTime() {
-		return toTime;
-	}
-	public void setToTime(String toTime) {
-		this.toTime = toTime;
+	public void setHours(String[] hours) {
+		this.hours = hours;
 	}
 	public Double getVisit() {
 		return visit;

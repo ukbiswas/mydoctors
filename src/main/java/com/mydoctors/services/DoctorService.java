@@ -1,5 +1,6 @@
 package com.mydoctors.services;
 
+
 import com.mydoctors.domain.Doctor;
 
 public interface DoctorService {

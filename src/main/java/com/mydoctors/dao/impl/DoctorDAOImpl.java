@@ -17,11 +17,12 @@ public class DoctorDAOImpl implements DoctorDAO {
 	//private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	//private MongoOperations mongoOps;
 	private MongoTemplate mongoTemplate;
+	//private String collectionName = "doctors";
 	
 	
-	public Doctor getDoctor(String id) {
+	public Doctor getDoctor(String registration) {
 		// TODO Auto-generated method stub
-		Query query = new Query(Criteria.where("_id").is(id));
+		Query query = new Query(Criteria.where("registration").is(registration));
 		return mongoTemplate.findOne(query, Doctor.class);
 	}
 
