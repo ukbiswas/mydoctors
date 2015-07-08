@@ -26,13 +26,13 @@ public class DoctorController {
 	@RequestMapping(value="/{id}",method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public Doctor getDoctor(@PathVariable String id) {
-		System.out.println("in controller :1");
+		System.out.println("in controller : id="+id);
 		Doctor doctor = doctorService.getDoctor(id);
 		System.out.println("user="+doctor);
 		return doctor;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/save", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	public Message saveDoctor(@RequestBody String doctorData) {
 		System.out.println("in controller : doctorData="+doctorData);

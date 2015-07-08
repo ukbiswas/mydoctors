@@ -10,7 +10,7 @@
 
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>/mydoctors/</url-pattern>
+		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
 
 	<listener>

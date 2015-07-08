@@ -21,8 +21,8 @@ public class DoctorDAOImpl implements DoctorDAO {
 	
 	public Doctor getDoctor(String id) {
 		// TODO Auto-generated method stub
-		//Query query = new Query(Criteria.where("_id").is(id));
-		return mongoTemplate.findById(id, Doctor.class);
+		Query query = new Query(Criteria.where("_id").is(id));
+		return mongoTemplate.findOne(query, Doctor.class);
 	}
 
 	public void saveDoctor(Doctor doctor) {
