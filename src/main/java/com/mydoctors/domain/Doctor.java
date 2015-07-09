@@ -18,7 +18,7 @@ public class Doctor {
 	private String[] degree;
 	private String description;
 	private String specialization;
-	private Timing timing;
+	private Timing[] timing;
 	
 	public String getId() {
 		return id;
@@ -69,10 +69,11 @@ public class Doctor {
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
-	public Timing getTiming() {
+	public Timing[] getTiming() {
 		return timing;
 	}
-	public void setTiming(Timing timing) {
+	public void setTiming(Timing[] timing) {
 		this.timing = timing;
 	}
+	
 }

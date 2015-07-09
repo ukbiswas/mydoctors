@@ -48,7 +48,7 @@ public class DoctorController {
 		"email": "uttamkumarbiswas@gmail.com",
 		"description": "blah blah",
 		"specialization": "skin",
-		"timing" :{
+		"timing" :[{
 					"days" : ["MON-WED", "FRI-SAT"],
 					"hours": ["10AM-2PM", "4PM-7.30PM"],
 					"visit":150,
@@ -57,12 +57,12 @@ public class DoctorController {
 								"pin" : 713141,
 								"phone" : "0432-123456"
 					}
-		        }
+		        }]
 		}
 	 * @param doctorData
 	 * @return
 	 */
-	@RequestMapping(value="/save", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	public Message saveDoctor(@RequestBody String doctorData) {
 		System.out.println("in controller : doctorData="+doctorData);
@@ -71,19 +71,10 @@ public class DoctorController {
 		try {
 			doctor = objectMapper.readValue(doctorData, Doctor.class);
 			doctorService.saveDoctor(doctor);
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println("docdotJson="+doctor.getName());
-		//doctorService.saveDoctor(docdotJson);
-		
 		Message message = new Message();
 		message.setMessage("Doctor added successfully");
 		return message;
