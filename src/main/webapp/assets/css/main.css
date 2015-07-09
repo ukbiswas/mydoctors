@@ -1665,6 +1665,7 @@
 		font-size: 0.9em;
 		font-weight: 600;
 		margin: 0 0 1em 0;
+		text-align: center;
 	}
 
 	input[type="text"],
@@ -1739,12 +1740,12 @@
 			display: none;
 		}
 
-	input[type="text"],
+	/* input[type="text"],
 	input[type="password"],
 	input[type="email"],
 	select {
 		height: 2.75em;
-	}
+	} */
 
 	textarea {
 		padding: 0.75em 1em;

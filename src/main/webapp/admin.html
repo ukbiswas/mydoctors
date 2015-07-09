@@ -6,7 +6,7 @@
 -->
 <html>
 <head>
-<title>My Doctor</title>
+<title>Save a doctor record</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -14,18 +14,19 @@
 <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" href="assets/css/main.css" />
 <link rel="stylesheet" href="assets/css/app.css" />
+
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 </head>
-<body class="landing">
+<body>
   <div class="container-fluid no-padding-margin">
     <!-- Page Wrapper -->
     <div id="page-wrapper">
 
       <!-- Header -->
-      <header id="header" class="alt">
+      <header id="header">
         <h1>
-          <a href="index.html">My Doctors</a>
+          <a href="index.html">Spectral</a>
         </h1>
         <nav id="nav">
           <ul>
@@ -33,9 +34,9 @@
               <div id="menu">
                 <ul>
                   <li><a href="index.html">Home</a></li>
-                  <li><a href="admin.html">Admin</a></li>
+                  <li><a href="generic.html">Admin</a></li>
                   <li><a href="elements.html">Elements</a></li>
-                  <li><a href="signup.html">Sign Up</a></li>
+                  <li><a href="#">Sign Up</a></li>
                   <li><a href="#">Log In</a></li>
                 </ul>
               </div></li>
@@ -43,56 +44,29 @@
         </nav>
       </header>
 
-      <!-- Banner -->
-      <section id="banner">
+      <!-- Main -->
+      <article id="main">
+        <header>
+          <h2>Admin Page</h2>
+          <p>Save your doctor's details through this portal</p>
+        </header>
+        <section id="one" class="wrapper style1 special">
         <div class="inner">
-          <h2>My Doctors</h2>
-          <p>
-            I Book my doctor<br />
-          </p>
-          <ul class="actions">
-            <li><a href="#" class="button special">Activate</a></li>
-          </ul>
-        </div>
-        <a href="#one" class="more scrolly">Learn More</a>
-      </section>
-
-      <!-- One -->
-      <section id="one" class="wrapper style1 special">
-        <div class="inner">
-          <header class="major">
-            <h2>
-              MyDoctor I find<br /> Helps you to find a doctor
-            </h2>
-            <p>
-              Not only it helps to find your doctor<br /> It also
-              tracks your appointment with a doctor
-            </p>
-          </header>
-          <div class="search">
+          <div class="save">
               <div class="form-group col-xs-12 col-sm-6 col-md-6">
-                <input type="text" class="form-control" id="name" placeholder="Enter name">
-                <input type="text" class="form-control" id="speciality" placeholder="Enter speciality">
+                <input type="text" class="form-control" id="saveName" placeholder="Enter name">
+                <input type="text" class="form-control" id="saveSpeciality" placeholder="Enter speciality">
               </div>
               <div class="form-group col-xs-12 col-sm-6 col-md-6">
-                <input type="text" class="form-control" id="venue" placeholder="Enter venue">
-                <input type="text" class="form-control" id="designation" placeholder="Enter designation">
+                <input type="text" class="form-control" id="saveVenue" placeholder="Enter venue">
+                <input type="text" class="form-control" id="saveDesignation" placeholder="Enter designation">
               </div>
               <div class="form-group col-xs-12 col-sm-6 col-md-6">
-                <select class="form-control" id="fees">
-                  <option class="placeholder">Select fees</option>
-                  <option>Free of cost</option>
-                  <option>Rs 0 - 100</option>
-                  <option>Rs 100 - 250</option>
-                  <option>Rs 250 - 500</option>
-                  <option>Rs 500 - 700</option>
-                  <option>Rs 700 - 1000</option>
-                  <option>More than 1000</option>
-                </select>
-                <input type="date" class="form-control" id="date" placeholder="Enter date">
+                <input type="number" class="form-control" id="saveFees" placeholder="Enter fees">
+                <input type="date" class="form-control" id="saveDate" placeholder="Enter date">
               </div>
               <div class="form-group col-xs-12 col-sm-6 col-md-6">
-                <select class="form-control" id="time">
+                <select class="form-control" id="saveTime">
                   <option class="placeholder">Select time</option>
                   <option>6AM  - 10AM</option>
                   <option>10AM - 12PM</option>
@@ -102,7 +76,7 @@
                   <option>6PM  - 8PM</option>
                   <option>8PM  - 12AM</option>
                 </select>
-                <select class="form-control" id="day">
+                <select class="form-control" id="saveDay">
                   <option class="placeholder">Select day</option>
                   <option>Sunday</option>
                   <option>Monday</option>
@@ -113,10 +87,11 @@
                   <option>Saturday</option>
                 </select>
               </div>
-            <div type="button" class="btn btn-default" onclick="setData()">Search</div>
+            <div type="button" class="btn btn-default" onclick="saveData()">Save</div>
           </div>
         </div>
       </section>
+      </article>
 
       <!-- Footer -->
       <footer id="footer">
@@ -125,11 +100,16 @@
               class="label">Twitter</span></a></li>
           <li><a href="#" class="icon fa-facebook"><span
               class="label">Facebook</span></a></li>
+          <li><a href="#" class="icon fa-instagram"><span
+              class="label">Instagram</span></a></li>
+          <li><a href="#" class="icon fa-dribbble"><span
+              class="label">Dribbble</span></a></li>
           <li><a href="#" class="icon fa-envelope-o"><span
               class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
-          <li>&copy; MyDoctors</li>
+          <li>&copy; Untitled</li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
         </ul>
       </footer>
 
@@ -141,11 +121,11 @@
   <script src="assets/js/jquery.scrolly.min.js"></script>
   <script src="assets/js/skel.min.js"></script>
   <script src="assets/js/util.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  <script src="assets/js/main.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/jquery-ui.min.js"></script>
   <script src="assets/js/app.js"></script>
-  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-  <script src="assets/js/main.js"></script>
 
 </body>
 </html>

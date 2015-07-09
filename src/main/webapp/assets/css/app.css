@@ -1,0 +1,16 @@
+.no-padding-margin {
+  padding: 0;
+  margin: 0;
+}
+
+.search .form-group input, .search .form-group select, .save .form-group input, .save .form-group select {
+  color: #21B2A6;
+  background-color: #fff !important;
+  margin-bottom: 20px;
+  height: 40px;
+  font-size: 15px;
+}
+
+.search .form-group, .save .form-group {
+  margin: 0;
+}
