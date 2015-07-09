@@ -1,25 +1,27 @@
 package com.mydoctors.domain;
 
+import java.util.List;
+
 /**
  * @author ukb
  *
  */
 public class Timing {
-	private String[] days;
-	private String[] hours;
+	private List<String> days;
+	private List<String> hours;
 	private Double visit;
 	private Address address;
-	public String[] getDays() {
+	
+	public List<String> getDays() {
 		return days;
 	}
-	public void setDays(String[] days) {
+	public void setDays(List<String> days) {
 		this.days = days;
 	}
-	
-	public String[] getHours() {
+	public List<String> getHours() {
 		return hours;
 	}
-	public void setHours(String[] hours) {
+	public void setHours(List<String> hours) {
 		this.hours = hours;
 	}
 	public Double getVisit() {

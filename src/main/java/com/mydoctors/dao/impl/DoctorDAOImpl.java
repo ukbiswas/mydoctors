@@ -1,5 +1,7 @@
 package com.mydoctors.dao.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -24,6 +26,11 @@ public class DoctorDAOImpl implements DoctorDAO {
 		// TODO Auto-generated method stub
 		Query query = new Query(Criteria.where("registration").is(registration));
 		return mongoTemplate.findOne(query, Doctor.class);
+	}
+	
+	public List<Doctor> getAllDoctor() {
+		// TODO Auto-generated method stub
+		return mongoTemplate.findAll(Doctor.class);
 	}
 
 	public void saveDoctor(Doctor doctor) {

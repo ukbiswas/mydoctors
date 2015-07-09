@@ -1,5 +1,7 @@
 package com.mydoctors.services.impl;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +33,14 @@ public class DoctorServiceImpl implements DoctorService {
 
 	}
 
-	public Doctor getDoctor(String registration) {
+	public Doctor getDoctor(String searchJson) {
 		// TODO Auto-generated method stub
-		System.out.println("in service :"+registration);
-		return doctorDAO.getDoctor(registration);
+		System.out.println("in service :"+searchJson);
+		return doctorDAO.getDoctor(searchJson);
+	}
+	
+	public List<Doctor> getAllDoctor() {
+		return doctorDAO.getAllDoctor();
 	}
 
 }

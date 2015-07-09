@@ -1,6 +1,8 @@
 package com.mydoctors.services;
 
 
+import java.util.List;
+
 import com.mydoctors.domain.Doctor;
 
 public interface DoctorService {
@@ -8,4 +10,5 @@ public interface DoctorService {
 	public void updateUser();
 	public void deleteUser();
 	public Doctor getDoctor(String Id);
+	public List<Doctor> getAllDoctor();
 }

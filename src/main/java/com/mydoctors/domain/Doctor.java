@@ -1,5 +1,7 @@
 package com.mydoctors.domain;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,10 +17,10 @@ public class Doctor {
 	private String name;
 	private String phone;
 	private String email;
-	private String[] degree;
+	private List<String> degree;
 	private String description;
 	private String specialization;
-	private Timing[] timing;
+	private List<Timing> timing;
 	
 	public String getId() {
 		return id;
@@ -51,10 +53,10 @@ public class Doctor {
 		this.email = email;
 	}
 	
-	public String[] getDegree() {
+	public List<String> getDegree() {
 		return degree;
 	}
-	public void setDegree(String[] degree) {
+	public void setDegree(List<String> degree) {
 		this.degree = degree;
 	}
 	public String getDescription() {
@@ -69,11 +71,10 @@ public class Doctor {
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
-	public Timing[] getTiming() {
+	public List<Timing> getTiming() {
 		return timing;
 	}
-	public void setTiming(Timing[] timing) {
+	public void setTiming(List<Timing> timing) {
 		this.timing = timing;
-	}
-	
+	}	
 }
