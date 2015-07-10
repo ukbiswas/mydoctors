@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
+import com.mydoctors.common.MessageConstant;
+import com.mydoctors.common.exceptions.BusinessException;
 import com.mydoctors.domain.Doctor;
 import com.mydoctors.domain.Message;
 import com.mydoctors.services.DoctorService;
@@ -48,16 +50,25 @@ public class DoctorController {
 
 	/**
 	 * to get all the doctors one need to call /api/doctor/registration url.
+	 * sample json :
+	  {
+	  	"location" : "Burdwan, Khosbagan"
+		"name":"ukbiswas",
+		"registration" : "007",
+		"degree":["MBBS(cal)","MD(cal)"],
+		"specialization": "skin",
+		"visit":150,
+		"pin" : 713141,
+	  }
 	 * @param registration
 	 * @return
 	 */
 	@RequestMapping(value="/{searchJson}",method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
-	public Doctor getDoctor(@PathVariable String searchJson) {
+	public List<Doctor> getDoctor(@PathVariable String searchJson) {
 		System.out.println("in controller : id="+searchJson);
-		Doctor doctor = doctorService.getDoctor(searchJson);
-		System.out.println("user="+doctor);
-		return doctor;
+		List<Doctor> doctors = doctorService.getDoctor(searchJson);
+		return doctors;
 	}
 	
 	/**
@@ -87,20 +98,18 @@ public class DoctorController {
 	public Message saveDoctor(@RequestBody String doctorData) {
 		Message message = new Message();
 		System.out.println("in controller : doctorData="+doctorData);
-		ObjectMapper objectMapper = new ObjectMapper();
-		Doctor doctor = null;
 		try {
-			doctor = objectMapper.readValue(doctorData, Doctor.class);
-			doctorService.saveDoctor(doctor);
-		} catch (Exception e) {
-			e.printStackTrace();
+			doctorService.saveDoctor(doctorData);
+			
+			message.setStatus(HttpStatus.OK.value());
+			message.setMessage("Doctor added successfully");
+		} catch (BusinessException businessException) {
+			message.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
+			message.setMessage(businessException.getMessage());
+		} catch (Exception exception) {
 			message.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-			message.setMessage("Failed to create a doctor with the data provided");
+			message.setMessage(MessageConstant.ERROR_500_MESSAGE);
 		}
-		System.out.println("docdotJson="+doctor.getName());
-		
-		message.setMessage("Doctor added successfully");
-		message.setStatus(HttpStatus.OK.value());
 		return message;
 	}
 

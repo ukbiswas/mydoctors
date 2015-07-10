@@ -2,12 +2,15 @@ package com.mydoctors.dao.impl;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.DBObject;
+import com.mydoctors.common.KeyConstants;
 import com.mydoctors.dao.DoctorDAO;
 import com.mydoctors.domain.Doctor;
 
@@ -22,10 +25,13 @@ public class DoctorDAOImpl implements DoctorDAO {
 	//private String collectionName = "doctors";
 	
 	
-	public Doctor getDoctor(String registration) {
-		// TODO Auto-generated method stub
-		Query query = new Query(Criteria.where("registration").is(registration));
-		return mongoTemplate.findOne(query, Doctor.class);
+	/**
+	 * 
+	 */
+	public List<Doctor> getDoctor(JSONObject searchJson) {
+		//TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny("some key word");
+		Query query = new Query(Criteria.where(KeyConstants.LOCATION).regex(searchJson.getString(KeyConstants.LOCATION)).and(KeyConstants.NAME).is(searchJson.get(KeyConstants.NAME)));
+		return mongoTemplate.find(query, Doctor.class);
 	}
 	
 	public List<Doctor> getAllDoctor() {
