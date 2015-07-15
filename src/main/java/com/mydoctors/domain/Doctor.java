@@ -9,25 +9,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * by ukb
  */
-@Document(collection = "doctors")
+//@Document(collection = "doctors")
 public class Doctor {
-	@Id
-	private String id;
 	private String registration;
 	private String name;
 	private String phone;
 	private String email;
-	private List<String> degree;
+	private String degree;
+	private String city;
 	private String description;
 	private String specialization;
-	private List<Timing> timing;
+	private Dispensary dispensaries;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getRegistration() {
 		return registration;
 	}
@@ -52,12 +45,17 @@ public class Doctor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public List<String> getDegree() {
+	public String getDegree() {
 		return degree;
 	}
-	public void setDegree(List<String> degree) {
+	public void setDegree(String degree) {
 		this.degree = degree;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
 	}
 	public String getDescription() {
 		return description;
@@ -71,10 +69,10 @@ public class Doctor {
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
-	public List<Timing> getTiming() {
-		return timing;
+	public Dispensary getDispensaries() {
+		return dispensaries;
 	}
-	public void setTiming(List<Timing> timing) {
-		this.timing = timing;
-	}	
+	public void setDispensaries(Dispensary dispensaries) {
+		this.dispensaries = dispensaries;
+	}
 }

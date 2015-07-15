@@ -93,6 +93,25 @@ public class DoctorController {
 	 * @param doctorData
 	 * @return
 	 */
+	@RequestMapping(value="/dispensary", method=RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public Message addDispensary(@RequestBody String doctorData) {
+		Message message = new Message();
+		System.out.println("in controller : doctorData="+doctorData);
+		try {
+			doctorService.addDispensary(doctorData);
+			message.setStatus(HttpStatus.OK.value());
+			message.setMessage("Doctor added successfully");
+		} catch (BusinessException businessException) {
+			message.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
+			message.setMessage(businessException.getMessage());
+		} catch (Exception exception) {
+			message.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+			message.setMessage(MessageConstant.ERROR_500_MESSAGE);
+		}
+		return message;
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	public Message saveDoctor(@RequestBody String doctorData) {

@@ -14,6 +14,7 @@ import com.mongodb.DBObject;
 import com.mydoctors.common.MessageConstant;
 import com.mydoctors.common.exceptions.BusinessException;
 import com.mydoctors.dao.DoctorDAO;
+import com.mydoctors.domain.Dispensary;
 import com.mydoctors.domain.Doctor;
 import com.mydoctors.services.DoctorService;
 
@@ -33,6 +34,24 @@ public class DoctorServiceImpl implements DoctorService {
 			Doctor doctor = objectMapper.readValue(doctorData, Doctor.class);
 			doctorDAO.saveDoctor(doctor);
 			System.out.println("docdotJson="+doctor.getName());
+		} catch (JsonMappingException jmEx) {
+			throw new BusinessException(MessageConstant.DATA_MALFORMED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BusinessException(MessageConstant.FAILED_TO_CREATE);
+		}
+	}
+	
+	@Override
+	public void addDispensary(String dispensaryData) throws BusinessException, Exception {
+		if(!StringUtils.hasText(dispensaryData)) {
+			throw new BusinessException(MessageConstant.NULL_EMPTY_DATA);
+		}
+		try {
+			ObjectMapper objectMapper = new ObjectMapper();
+			Dispensary dispensary = objectMapper.readValue(dispensaryData, Dispensary.class);
+			doctorDAO.addDispensary(dispensary);
+			System.out.println("docdotJson="+dispensaryData);
 		} catch (JsonMappingException jmEx) {
 			throw new BusinessException(MessageConstant.DATA_MALFORMED);
 		} catch (Exception e) {
