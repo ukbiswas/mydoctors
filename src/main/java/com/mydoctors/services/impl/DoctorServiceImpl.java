@@ -51,7 +51,7 @@ public class DoctorServiceImpl implements DoctorService {
 			ObjectMapper objectMapper = new ObjectMapper();
 			Dispensary dispensary = objectMapper.readValue(dispensaryData, Dispensary.class);
 			doctorDAO.addDispensary(dispensary);
-			System.out.println("docdotJson="+dispensaryData);
+			System.out.println("dispensaryData="+dispensaryData);
 		} catch (JsonMappingException jmEx) {
 			throw new BusinessException(MessageConstant.DATA_MALFORMED);
 		} catch (Exception e) {

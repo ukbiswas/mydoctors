@@ -52,13 +52,9 @@ public class DoctorController {
 	 * to get all the doctors one need to call /api/doctor/registration url.
 	 * sample json :
 	  {
-	  	"location" : "Burdwan, Khosbagan"
 		"name":"ukbiswas",
-		"registration" : "007",
-		"degree":["MBBS(cal)","MD(cal)"],
-		"specialization": "skin",
-		"visit":150,
-		"pin" : 713141,
+		"city" : "Burdwan",
+		"specialization": "skin"
 	  }
 	 * @param registration
 	 * @return
@@ -72,36 +68,28 @@ public class DoctorController {
 	}
 	
 	/**
-	 * {"name":"ukbiswas",
+	 * {
 		"registration" : "007",
-		"degree":["MBBS(cal)","MD(cal)"],
+		"days": "MON-FRI",
+		"timing" : "10AM-7PM",
+		"visit": 150,		
 		"phone": "9775213029",
-		"email": "uttamkumarbiswas@gmail.com",
-		"description": "blah blah",
-		"specialization": "skin",
-		"timing" :[{
-					"days" : ["MON-WED", "FRI-SAT"],
-					"hours": ["10AM-2PM", "4PM-7.30PM"],
-					"visit":150,
-					"address": {
-								"location" : "Burdwan, Khosbagan",
-								"pin" : 713141,
-								"phone" : "0432-123456"
-					}
-		        }]
+		"address": "Burdwan",
+		"pin": "713141",
+		
 		}
-	 * @param doctorData
+	 * @param dispensaryData
 	 * @return
 	 */
 	@RequestMapping(value="/dispensary", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
-	public Message addDispensary(@RequestBody String doctorData) {
+	public Message addDispensary(@RequestBody String dispensaryData) {
 		Message message = new Message();
-		System.out.println("in controller : doctorData="+doctorData);
+		System.out.println("in controller : doctorData="+dispensaryData);
 		try {
-			doctorService.addDispensary(doctorData);
+			doctorService.addDispensary(dispensaryData);
 			message.setStatus(HttpStatus.OK.value());
-			message.setMessage("Doctor added successfully");
+			message.setMessage("Dispensary added successfully");
 		} catch (BusinessException businessException) {
 			message.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
 			message.setMessage(businessException.getMessage());
@@ -111,15 +99,27 @@ public class DoctorController {
 		}
 		return message;
 	}
-	
+	/**
+	 * {
+	 	"registration" : "007",
+	 	"name":"uttam kumar biswas",		
+		"degree": "MBBS(cal)",
+		"phone": "9775213029",
+		"email": "uttamkumarbiswas@gmail.com",
+		"city" : "burdwan",
+		"specialization": "skin",
+		"description": "blah blah",
+		}
+	 * @param doctorData
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	public Message saveDoctor(@RequestBody String doctorData) {
 		Message message = new Message();
 		System.out.println("in controller : doctorData="+doctorData);
 		try {
-			doctorService.saveDoctor(doctorData);
-			
+			doctorService.saveDoctor(doctorData);			
 			message.setStatus(HttpStatus.OK.value());
 			message.setMessage("Doctor added successfully");
 		} catch (BusinessException businessException) {

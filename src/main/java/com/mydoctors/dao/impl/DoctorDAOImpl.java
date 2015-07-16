@@ -32,13 +32,17 @@ public class DoctorDAOImpl implements DoctorDAO {
 												+ "values(:registration, :name, :degree, :phone, :email, :city, :specialization, :description)"; 
 	private static final String INSERT_DISPENSARY = "INSERT INTO dispensaries(registration, days, timing, visit, phone, address, pin) "
 												+ "values(:registration, :days, :timing, :visit, :phone, :address, :pin)";
+	private static final String SEARCH_DOCTORS = "SELECT * FROM doctors WHERE MATCH(name, city, specialization) AGAINST ( :searchString)";
 	
 	/**
 	 * 
 	 */
-	public List<Doctor> getDoctor(JSONObject searchJson) {
+	public List<Doctor> getDoctor(String searchString) {
 		//TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny("some key word");
-		Query query = new Query(Criteria.where(KeyConstants.LOCATION).regex(searchJson.getString(KeyConstants.LOCATION)).and(KeyConstants.NAME).is(searchJson.get(KeyConstants.NAME)));
+		//Query query = new Query(Criteria.where(KeyConstants.LOCATION).regex(searchJson.getString(KeyConstants.LOCATION)).and(KeyConstants.NAME).is(searchJson.get(KeyConstants.NAME)));
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("searchString", searchString);
+		List<Doctor> doctors = namedParameterJdbcTemplate.query(SEARCH_DOCTORS, paramMap, rowMapper);
 		return null;
 	}
 	
