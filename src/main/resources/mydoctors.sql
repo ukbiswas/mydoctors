@@ -7,8 +7,8 @@ create table doctors (
 	city TEXT,
 	specialization TEXT,
 	description VARCHAR(1000)
-)
-
+) ENGINE = MYISAM;
+ALTER TABLE doctors ADD FULLTEXT(name, city, specialization);
 create table dispensaries (
 	registration VARCHAR(50),
 	days VARCHAR(50),
