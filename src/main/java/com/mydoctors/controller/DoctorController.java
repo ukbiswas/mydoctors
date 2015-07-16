@@ -39,13 +39,17 @@ public class DoctorController {
 	 * to get all the doctors one need to call /api/doctor url.
 	 * @return
 	 */
-	@RequestMapping(method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/{registration}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
-	public List<Doctor> getAllDoctor() {
-		System.out.println("in controller : getting all doctors");
-		List<Doctor> allDoctor = doctorService.getAllDoctor();
-		System.out.println("doctors="+allDoctor);
-		return allDoctor;
+	public Doctor getDoctor(@PathVariable String registration) {
+		System.out.println("in controller : getting doctor with registration="+registration);
+		Doctor doctor = null;
+		try{
+			doctor = doctorService.getDoctor(registration);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return doctor;
 	}
 
 	/**
@@ -59,11 +63,18 @@ public class DoctorController {
 	 * @param registration
 	 * @return
 	 */
-	@RequestMapping(value="/{searchJson}",method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/search/{searchString}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
-	public List<Doctor> getDoctor(@PathVariable String searchJson) {
-		System.out.println("in controller : id="+searchJson);
-		List<Doctor> doctors = doctorService.getDoctor(searchJson);
+	public List<Doctor> searchDoctors(@PathVariable String searchString) {
+		System.out.println("in controller : searchString="+searchString);
+		List<Doctor> doctors = null;
+		try {
+			doctors = doctorService.searchDoctors(searchString);
+		} catch (BusinessException businessException) {
+			businessException.printStackTrace();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 		return doctors;
 	}
 	
@@ -75,8 +86,7 @@ public class DoctorController {
 		"visit": 150,		
 		"phone": "9775213029",
 		"address": "Burdwan",
-		"pin": "713141",
-		
+		"pin": "713141"
 		}
 	 * @param dispensaryData
 	 * @return
@@ -108,7 +118,7 @@ public class DoctorController {
 		"email": "uttamkumarbiswas@gmail.com",
 		"city" : "burdwan",
 		"specialization": "skin",
-		"description": "blah blah",
+		"description": "blah blah"
 		}
 	 * @param doctorData
 	 * @return

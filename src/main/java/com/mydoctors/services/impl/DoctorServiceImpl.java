@@ -70,15 +70,14 @@ public class DoctorServiceImpl implements DoctorService {
 
 	}
 	
-	public List<Doctor> getDoctor(String searchData) {
-		// TODO Auto-generated method stub
-		System.out.println("in service searchData=:"+searchData);
-		JSONObject searchJson = new JSONObject(searchData);
-		return doctorDAO.getDoctor(searchJson);
+	public List<Doctor> searchDoctors(String searchString) throws BusinessException, Exception {
+		System.out.println("in service searchData=:"+searchString);
+		//JSONObject searchJson = new JSONObject(searchData);
+		return doctorDAO.searchDoctors(searchString);
 	}
-	
-	public List<Doctor> getAllDoctor() {
-		return doctorDAO.getAllDoctor();
+	@Override
+	public Doctor getDoctor(String registration) throws Exception {
+		return doctorDAO.getDoctor(registration);
 	}
 
 }

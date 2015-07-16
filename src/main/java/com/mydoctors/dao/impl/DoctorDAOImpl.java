@@ -1,14 +1,18 @@
 package com.mydoctors.dao.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -32,23 +36,29 @@ public class DoctorDAOImpl implements DoctorDAO {
 												+ "values(:registration, :name, :degree, :phone, :email, :city, :specialization, :description)"; 
 	private static final String INSERT_DISPENSARY = "INSERT INTO dispensaries(registration, days, timing, visit, phone, address, pin) "
 												+ "values(:registration, :days, :timing, :visit, :phone, :address, :pin)";
-	private static final String SEARCH_DOCTORS = "SELECT * FROM doctors WHERE MATCH(name, city, specialization) AGAINST ( :searchString)";
+	private static final String SEARCH_DOCTORS = "SELECT * FROM doctors WHERE MATCH(name, city, specialization) AGAINST ( :searchString IN BOOLEAN MODE)";
+	private static final String SELECT_DOCTOR_BY_REGISTRATION = "SELECT registration, name, degree, phone, email, city, specialization, description FROM doctors WHERE registration = :registration";
 	
 	/**
 	 * 
 	 */
-	public List<Doctor> getDoctor(String searchString) {
+	public List<Doctor> searchDoctors(String searchString) throws DataAccessException {
 		//TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny("some key word");
 		//Query query = new Query(Criteria.where(KeyConstants.LOCATION).regex(searchJson.getString(KeyConstants.LOCATION)).and(KeyConstants.NAME).is(searchJson.get(KeyConstants.NAME)));
 		Map<String, String> paramMap = new HashMap<String, String>();
 		paramMap.put("searchString", searchString);
-		List<Doctor> doctors = namedParameterJdbcTemplate.query(SEARCH_DOCTORS, paramMap, rowMapper);
-		return null;
+		return namedParameterJdbcTemplate.query(SEARCH_DOCTORS, paramMap, rowMapperDoctor);
 	}
 	
-	public List<Doctor> getAllDoctor() {
-		// TODO Auto-generated method stub
-		return null;
+	public Doctor getDoctor(String registration) throws DataAccessException {
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("registration", registration);
+		List<Doctor> doctors = namedParameterJdbcTemplate.query(SELECT_DOCTOR_BY_REGISTRATION, paramMap, rowMapperDoctor);
+		Doctor doctor = null;
+		if(doctors != null && !doctors.isEmpty()) {
+			doctor = doctors.get(0);
+		}
+		return doctor;
 	}
 
 	public void saveDoctor(Doctor doctor) {
@@ -86,4 +96,19 @@ public class DoctorDAOImpl implements DoctorDAO {
 		// TODO Auto-generated method stub
 
 	}
+	
+	RowMapper<Doctor> rowMapperDoctor = new RowMapper<Doctor>(){
+		public Doctor mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Doctor doctor = new Doctor();
+			doctor.setRegistration(rs.getString("registration"));
+			doctor.setName(rs.getString("name"));
+			doctor.setDegree(rs.getString("degree"));
+			doctor.setPhone(rs.getString("phone"));
+			doctor.setEmail(rs.getString("email"));
+			doctor.setCity(rs.getString("city"));
+			doctor.setSpecialization(rs.getString("specialization"));
+			doctor.setDescription(rs.getString("description"));
+            return doctor;
+        }
+	};
 }

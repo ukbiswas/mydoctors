@@ -11,6 +11,6 @@ public interface DoctorService {
 	public void addDispensary(String doctorData) throws BusinessException, Exception;
 	public void updateUser();
 	public void deleteUser();
-	public List<Doctor> getDoctor(String Id);
-	public List<Doctor> getAllDoctor();
+	public List<Doctor> searchDoctors(String searchString) throws BusinessException, Exception;
+	public Doctor getDoctor(String registration) throws Exception;
 }
