@@ -80,46 +80,16 @@ public class DoctorController {
 	
 	/**
 	 * {
-		"registration" : "007",
-		"days": "MON-FRI",
-		"timing" : "10AM-7PM",
-		"visit": 150,		
-		"phone": "9775213029",
-		"address": "Burdwan",
-		"pin": "713141"
-		}
-	 * @param dispensaryData
-	 * @return
-	 */
-	@RequestMapping(value="/dispensary", method=RequestMethod.POST, produces="application/json")
-	@ResponseBody
-	public Message addDispensary(@RequestBody String dispensaryData) {
-		Message message = new Message();
-		System.out.println("in controller : doctorData="+dispensaryData);
-		try {
-			doctorService.addDispensary(dispensaryData);
-			message.setStatus(HttpStatus.OK.value());
-			message.setMessage("Dispensary added successfully");
-		} catch (BusinessException businessException) {
-			message.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
-			message.setMessage(businessException.getMessage());
-		} catch (Exception exception) {
-			message.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-			message.setMessage(MessageConstant.ERROR_500_MESSAGE);
-		}
-		return message;
-	}
-	/**
-	 * {
 	 	"registration" : "007",
 	 	"name":"uttam kumar biswas",		
 		"degree": "MBBS(cal)",
+		"specialization": "skin",
 		"phone": "9775213029",
 		"email": "uttamkumarbiswas@gmail.com",
 		"city" : "burdwan",
-		"specialization": "skin",
+	    "address" : "Burdwan, Khosbagan",
 		"description": "blah blah"
-		}
+	   }
 	 * @param doctorData
 	 * @return
 	 */

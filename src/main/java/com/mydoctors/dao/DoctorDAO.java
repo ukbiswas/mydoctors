@@ -13,6 +13,5 @@ public interface DoctorDAO {
 	public List<Doctor> searchDoctors(String searchString) throws DataAccessException;
 	public Doctor getDoctor(String registration) throws DataAccessException;
 	public void saveDoctor(Doctor doctor);
-	public void addDispensary(Dispensary dispensary);
 	public void updateDoctor(Doctor doctor);
 }
