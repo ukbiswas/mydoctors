@@ -90,53 +90,59 @@
                         <div class="col-sm-5 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>Add a doctor</h3>
-                            		<p>Fill in the form to register a doctor</p>
+                        			<h3>Add doctor's address</h3>
+                            		<p>Fill in the addresses of the doctor</p>
                         		</div>
                         		<div class="form-top-right">
                         			<i class="fa fa-pencil"></i>
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="" method="post" class="registration-form">
-			                    	<div class="form-group">
-			                    		<label class="sr-only" for="form-name">Name</label>
-			                        	<input type="text" name="form-first-name" placeholder="Name..." class="form-first-name form-control" id="form-name">
+			                    <form role="form">
+			                    		<div class="form-group">
+                                <label class="sr-only" for="form-doctor-address">Address</label>
+                                <textarea name="form-doctor-address" placeholder="Address..." class="form-control" id="form-doctor-address"></textarea>
+                              </div>
+                              <div class="form-group">
+                                <label class="sr-only" for="form-pin">Address</label>
+                                <input type="text"  name="form-pin" placeholder="Pin..." class="form-control" id="form-pin">
+                              </div>
+                              <div class="form-group">
+                                <label class="sr-only" for="form-doctor-visit">Address</label>
+                                <input type="text" name="form-doctor-visit" placeholder="Visit..." class="form-control" id="form-doctor-visit">
+                              </div>
+                              <div class="form-group">
+			                        	<label class="sr-only" for="form-doctor-phone">Phone</label>
+			                        	<input type="text" name="form-doctor-phone" placeholder="Phone..." class="form-control" id="form-doctor-phone">
+			                        </div>   
+                            </form>  
+                            <form class="form-inline doctor-address">             
+			                        <div class="form-group">
+			                        	<select class="form-control" id="form-day">
+                                  <option class="placeholder">Select day</option>
+                                  <option>Sunday</option>
+                                  <option>Monday</option>
+                                  <option>Tuesday</option>
+                                  <option>Wednesday</option>
+                                  <option>Thursday</option>
+                                  <option>Friday</option>
+                                  <option>Saturday</option>
+                                </select>
+			                        </div>
+                              <div class="form-group">
+			                        	<label class="sr-only" for="form-time-from">Time from</label>
+			                        	<input type="time" name="form-time-from" placeholder="Time from" class="form-control" id="form-time-from">
 			                        </div>
 			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-registration">Registration no.</label>
-			                        	<input type="text" name="form-registration" placeholder="Registration no..." class="form-registration form-control" id="form-registration">
+			                        	<label class="sr-only" for="form-time-to">Time to</label>
+			                        	<input type="time" name="form-time-to" placeholder="Time to" class="form-control" id="form-time-to">
 			                        </div>
-                              		<div class="form-group">
-			                        	<label class="sr-only" for="form-qualification">Qualification</label>
-			                        	<input type="text" name="form-qualification" placeholder="Qualification..." class="form-qualification form-control" id="form-qualification">
-			                        </div>
-                              		<div class="form-group">
-			                        	<label class="sr-only" for="form-specialization">Specialization</label>
-			                        	<input type="text" name="form-specialization" placeholder="Specialization..." class="form-specialization form-control" id="form-specialization">
-			                        </div>
-                              		<div class="form-group">
-			                        	<label class="sr-only" for="form-phone">Phone</label>
-			                        	<input type="text" name="form-phone" placeholder="Phone..." class="form-phone form-control" id="form-phone">
-			                        </div>                  
-			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-email">Email</label>
-			                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
-			                        </div>
-                              		<div class="form-group">
-			                        	<label class="sr-only" for="form-city">City</label>
-			                        	<input type="text" name="form-city" placeholder="City..." class="form-city form-control" id="form-city">
-			                        </div>
-                              		<div class="form-group">
-			                        	<label class="sr-only" for="form-address">Address</label>
-			                        	<textarea name="form-address" placeholder="Address..." class="form-address form-control" id="form-address"></textarea>
-			                        </div>
-			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-about-yourself">About yourself</label>
-			                        	<textarea name="form-about-yourself" placeholder="About yourself..." class="form-about-yourself form-control" id="form-about-yourself"></textarea>
-			                        </div>
-			                        <button class="btn" onclick="saveData()">Sign me up!</button>
-			                    </form>
+                            </form>
+                            <div class="form">
+                              <button class="btn" onclick="addDay()">Add another day!</button>
+                              <button class="btn" onclick="addAddress()">Add another address!</button>
+                              <button class="btn" onclick="saveAddress()">Save address!</button>
+                            </div>
 		                    </div>
                         </div>
                     </div>
