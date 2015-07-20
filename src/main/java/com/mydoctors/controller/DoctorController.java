@@ -103,12 +103,15 @@ public class DoctorController {
 			message.setStatus(HttpStatus.OK.value());
 			message.setMessage("Doctor added successfully");
 		} catch (BusinessException businessException) {
+			businessException.printStackTrace();
 			message.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
 			message.setMessage(businessException.getMessage());
 		} catch (Exception exception) {
+			exception.printStackTrace();
 			message.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 			message.setMessage(MessageConstant.ERROR_500_MESSAGE);
 		}
+		System.out.println("message="+message.toString());
 		return message;
 	}
 

@@ -1,4 +1,6 @@
+//var baseUrl = "http://localhost:8080/mydoctors/api"
 function saveData() {
+  alert('Hi1');
   var formName = $('#form-name').val(),
       formRegistration = $('#form-registration').val(),
       formQualification = $('#form-qualification').val(),
@@ -8,32 +10,46 @@ function saveData() {
       formCity = $('#form-city').val(),
       formAddress = $('#form-address').val(),
       formAboutYourself = $('#form-about-yourself').val(),
-      url = 'www.xxx.com';
+      url = '/mydoctors/api/doctor';
+  alert('url='+url);
   var data = JSON.stringify({
       'name':           formName,
       'registration':   formRegistration,
-      'qualification':  formQualification,
+      'degree':  formQualification,
       'specialization': formSpecialization,
       'phone':          formPhone,
       'email':          formEmail,
       'city':           formCity,
       'address':        formAddress,
-      'aboutYourself':  formAboutYourself,
+      'description':  formAboutYourself,
   });
-  $.ajax({
+  //alert('data='+data);
+ $.ajax({
     type: 'POST',
     url: url,
     async: false,
     data: data,
     contentType: 'application/json',
-    dataType: 'json',
+    //dataType: 'json',
+    processData: false,
     success: function(data) {
+      alert('in success');
       window.location.assign("../address.html");
     }, 
-    error: function() {
-      window.location.assign("address.html");
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      alert('in error : textStatus='+textStatus);
+      console.log(XMLHttpRequest.responseText);
+      console.log(errorThrown);
+      //window.location.assign("address.html");
     }
   });
+  /*$.POST(
+      url, 
+      data,
+      function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+      }
+    );*/
 }
 
 function addDay() {

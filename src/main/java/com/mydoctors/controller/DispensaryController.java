@@ -55,6 +55,7 @@ public class DispensaryController {
 			message.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 			message.setMessage(MessageConstant.ERROR_500_MESSAGE);
 		}
+		System.out.println("message="+message.toString());
 		return message;
 	}
 	/**
